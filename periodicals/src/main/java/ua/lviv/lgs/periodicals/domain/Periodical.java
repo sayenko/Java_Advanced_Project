@@ -1,12 +1,31 @@
 package ua.lviv.lgs.periodicals.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "periodical")
 public class Periodical {
-	private Integer id;
-	private String name;
-	private String description;
-	private Double price;
 	
-	public Periodical() {}
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	@Column
+	private String name;
+	
+	@Column
+	private String description;
+	
+	@Column
+	private Double price;
+
+	public Periodical() {
+	}
 
 	public Periodical(String name, String description, Double price) {
 		this.name = name;
@@ -99,6 +118,5 @@ public class Periodical {
 	@Override
 	public String toString() {
 		return "Periodical [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
-	}	
-	
+	}
 }

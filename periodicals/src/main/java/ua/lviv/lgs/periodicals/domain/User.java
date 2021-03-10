@@ -1,32 +1,57 @@
 package ua.lviv.lgs.periodicals.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+
 	private String email;
 	private String firstName;
 	private String lastName;
-	private UserRole role;
 	private String password;
-	
-	public User() {}
+	private String passwordConfirm;
+
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
+
+	public User() {
+	}
+
+	public User(User user) {
+		this.id = user.id;
+		this.email = user.email;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.password = user.password;
+		this.role = user.role;
+	}
 
 	public User(String email, String firstName, String lastName, UserRole role, String password) {
-		super();
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = role;
 		this.password = password;
+		this.role = role;
 	}
 
 	public User(Integer id, String email, String firstName, String lastName, UserRole role, String password) {
-		super();
 		this.id = id;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = role;
 		this.password = password;
+		this.role = role;
 	}
 
 	public Integer getId() {
@@ -61,6 +86,14 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public UserRole getRole() {
 		return role;
 	}
@@ -69,12 +102,16 @@ public class User {
 		this.role = role;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUserName() {
+		return email;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	@Override
@@ -124,18 +161,14 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
+		if (role != other.role)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", role="
-				+ role + ", password=" + password + "]";
+		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", password=" + password + ", role=" + role + "]";
 	}
-	
 }
