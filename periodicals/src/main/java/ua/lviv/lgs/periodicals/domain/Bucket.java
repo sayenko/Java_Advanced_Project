@@ -32,6 +32,10 @@ public class Bucket {
 
 	public Bucket() {
 	}
+	
+	public Bucket(Integer id) {
+		this.id = id;
+	}
 
 	public Bucket(User user, Periodical periodical, Date purchaseDate) {
 		this.user = user;
