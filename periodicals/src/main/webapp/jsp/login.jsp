@@ -12,40 +12,51 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Log in with your account</title>
-
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    
+    <link type="text/css"  href="login.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-    <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://userresearch.google.com/images/team_graphic.png" id="icon" alt="Login icon" />
+    </div>
+    
+      <form method="POST" action="${contextPath}/login" class="form-signin">
+        <h2 class="form-heading">PERIODICALS</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="email" type="text" class="form-control" placeholder="Email" autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
+            <input name="email" type="text" placeholder="Email" class="fadeIn second" 
+                   autofocus="true"/>
+            <input name="password" type="password" placeholder="Password" class="fadeIn third "/>
             <span>${error}</span>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            
+            <input class="fadeIn fourth" type="submit" value="Log In"/>
         </div>
 
-    </form>
+    </form>    
 
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover"  href="${contextPath}/registration" >Create an account</a>
+    </div>
+
+  </div>
 </div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
 </body>
 </html>
